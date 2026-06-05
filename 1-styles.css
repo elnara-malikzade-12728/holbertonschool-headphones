@@ -29,7 +29,7 @@ html {
     scroll-behavior: smooth;
     font-family: var(--font-main);
     color: var(--color-white);
-    background-color: var(--color-white); /* Base background flips to light for sectioning */
+    background-color: var(--color-white);
 }
 
 img {
@@ -73,6 +73,8 @@ img {
 .section {
     padding: 80px 0;
     text-align: center;
+    display: block;
+    width: 100%;
 }
 
 .section-header {
@@ -93,15 +95,24 @@ img {
     color: var(--color-text-dark);
 }
 
-/* Reusable CSS Flex Grid System */
+/* Flex Grid System Architecture */
 .grid {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    width: 100%;
+}
+
+.grid-4-cols {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .grid-4-cols .card-item {
-    flex: 1 1 calc(25% - 23px); /* Perfectly fills exactly 4 balanced grid lanes */
+    flex: 1 1 calc(25% - 23px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -109,9 +120,21 @@ img {
     padding: 10px;
 }
 
-/* Card Content Elements */
+/* Card Sizing and Asset Safety Constraints */
 .card-icon-wrapper {
+    height: 65px;
+    width: 65px;
     margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    display: block;
 }
 
 .card-title {
@@ -127,12 +150,6 @@ img {
     color: var(--color-text-dark);
 }
 
-.card-item img {
-    width: 5vw;
-    height: 5vh;
-    margin: 20px;
-}
-
 /* ==========================================
    4. ICON FONT ATTRIBUTION MAP
    ========================================== */
@@ -146,29 +163,17 @@ img {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    
-    /* Global layout specs for feature graphics icons */
     font-size: 65px;
     color: var(--color-primary);
 }
-
-
-
-
-/* Map content variables extracted from the zip mapping manifest 
 
 .icon-soundwave::before { content: "\e900"; }
 .icon-hearing::before   { content: "\e901"; }
 .icon-video::before     { content: "\e902"; }
 .icon-music::before     { content: "\e903"; }
 
-*/
-
-
-
-
 /* ==========================================
-   5. HEADER & HERO (PERSISTED DESKTOP VIEW)
+   5. HEADER & HERO (DESKTOP)
    ========================================== */
 .header {
     position: absolute;
@@ -204,6 +209,17 @@ img {
     letter-spacing: 1px;
 }
 
+.nav-link:hover, .nav-link:focus {
+        color: var(--color-primary);
+        outline: none;
+    }
+
+
+    /* Hidden on Desktop */
+.nav-toggle, .nav-toggle-label {
+    display: none;
+}
+
 .hero {
     min-height: 100vh;
     background-image: linear-gradient(rgba(7, 22, 44, 0.6), rgba(7, 22, 44, 0.6)), url('./images/img-1.png');
@@ -229,10 +245,9 @@ img {
 .hero-description { font-size: 14px; line-height: 1.6; opacity: 0.8; }
 
 /* ==========================================
-   6. MOBILE VIEWPORT MEDIA QUERIES
+   6. MOBILE VIEWPORT MEDIA QUERIES (<= 480px)
    ========================================== */
 @media (max-width: 480px) {
-    /* Responsive Header & Navigation Mechanics */
     .header-container {
         display: flex !important;
         flex-direction: column !important;
@@ -256,20 +271,24 @@ img {
         width: 100%;
     }
 
+
+
+
+  
+
     .nav-list {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
+        list-style: none;
+        display: flex;
         gap: 15px;
     }
 
-    /* Hero Scaling for Mobile viewports */
+
+
     .hero { padding-top: 180px; }
     .hero-title { font-size: 28px !important; }
     .hero-subtitle { font-size: 14px; }
     .hero-btn { width: 100%; text-align: center; }
 
-    /* --- "What We Do" Grid Adaptations --- */
     .section {
         padding: 50px 0;
     }
@@ -282,7 +301,6 @@ img {
         font-size: 26px;
     }
 
-    /* Wrap grid column cards to a 100% full vertical block row cascade */
     .grid-4-cols .card-item {
         flex: 1 1 100%;
         margin-bottom: 20px;
@@ -292,12 +310,9 @@ img {
         font-size: 16px;
         margin-bottom: 10px;
     }
+    
+    .card-img {
+        height: 65px;
+        width: auto;
+    }
 }
-
-
-
-
-
-
-
-
