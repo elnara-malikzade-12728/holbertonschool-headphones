@@ -1,0 +1,303 @@
+/* ==========================================
+   1. CSS RESET, VARIABLES & CUSTOM FONTS
+   ========================================== */
+@font-face {
+    font-family: 'holberton-headphones';
+    src: url('./assets/fonts/holberton-headphones.ttf') format('truetype'),
+         url('./assets/fonts/holberton-headphones.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+:root {
+    --color-white: #ffffff;
+    --color-primary: #ff4343;
+    --color-text-dark: #07162c;
+    --color-text-muted: #626a75;
+    --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --max-width: 1000px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: var(--font-main);
+    color: var(--color-white);
+    background-color: var(--color-white); /* Base background flips to light for sectioning */
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ==========================================
+   2. CUSTOM UTILITY ARCHITECTURE
+   ========================================== */
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 15px 35px;
+    border-radius: 25px;
+    text-transform: uppercase;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 67, 67, 0.4);
+}
+
+.btn:hover, .btn:focus {
+    opacity: 0.9;
+    filter: brightness(1.1);
+    outline: none;
+}
+
+/* ==========================================
+   3. REUSABLE SECTION COMPONENT PATTERNS
+   ========================================== */
+.section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.section-header {
+    max-width: 650px;
+    margin: 0 auto 60px auto;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--color-text-dark);
+    margin-bottom: 20px;
+}
+
+.section-tagline {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-text-dark);
+}
+
+/* Reusable CSS Flex Grid System */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.grid-4-cols .card-item {
+    flex: 1 1 calc(25% - 23px); /* Perfectly fills exactly 4 balanced grid lanes */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Card Content Elements */
+.card-icon-wrapper {
+    margin-bottom: 25px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--color-text-dark);
+    margin-bottom: 15px;
+}
+
+.card-description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-text-dark);
+}
+
+.card-item img {
+    width: 5vw;
+    height: 5vh;
+    margin: 20px;
+}
+
+/* ==========================================
+   4. ICON FONT ATTRIBUTION MAP
+   ========================================== */
+.holberton-icon {
+    font-family: 'holberton-headphones' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* Global layout specs for feature graphics icons */
+    font-size: 65px;
+    color: var(--color-primary);
+}
+
+
+
+
+/* Map content variables extracted from the zip mapping manifest 
+
+.icon-soundwave::before { content: "\e900"; }
+.icon-hearing::before   { content: "\e901"; }
+.icon-video::before     { content: "\e902"; }
+.icon-music::before     { content: "\e903"; }
+
+*/
+
+
+
+
+/* ==========================================
+   5. HEADER & HERO (PERSISTED DESKTOP VIEW)
+   ========================================== */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 20px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-wrapper { display: block; }
+.logo-img { height: 32px; width: auto; }
+.nav-toggle, .nav-toggle-label { display: none; }
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+}
+
+.nav-link {
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero {
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(7, 22, 44, 0.6), rgba(7, 22, 44, 0.6)), url('./images/img-1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding-top: 140px;
+    padding-bottom: 60px;
+}
+
+.hero-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content { max-width: 650px; }
+.hero-title { font-size: 40px; font-weight: bold; line-height: 1.2; margin-bottom: 15px; }
+.hero-subtitle { font-size: 16px; font-weight: bold; margin-bottom: 40px; }
+.hero-btn { margin-bottom: 50px; }
+.hero-description { font-size: 14px; line-height: 1.6; opacity: 0.8; }
+
+/* ==========================================
+   6. MOBILE VIEWPORT MEDIA QUERIES
+   ========================================== */
+@media (max-width: 480px) {
+    /* Responsive Header & Navigation Mechanics */
+    .header-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .logo-wrapper {
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0 auto !important;
+        width: 100%;
+    }
+
+    .nav {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100%;
+    }
+
+    .nav-list {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px;
+    }
+
+    /* Hero Scaling for Mobile viewports */
+    .hero { padding-top: 180px; }
+    .hero-title { font-size: 28px !important; }
+    .hero-subtitle { font-size: 14px; }
+    .hero-btn { width: 100%; text-align: center; }
+
+    /* --- "What We Do" Grid Adaptations --- */
+    .section {
+        padding: 50px 0;
+    }
+
+    .section-header {
+        margin-bottom: 40px;
+    }
+
+    .section-title {
+        font-size: 26px;
+    }
+
+    /* Wrap grid column cards to a 100% full vertical block row cascade */
+    .grid-4-cols .card-item {
+        flex: 1 1 100%;
+        margin-bottom: 20px;
+    }
+    
+    .card-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+}
+
+
+
+
+
+
+
+
